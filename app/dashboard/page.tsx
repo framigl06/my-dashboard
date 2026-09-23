@@ -3,7 +3,15 @@ import { CheckSquare, CalendarDays, BookOpen, Wallet } from "lucide-react";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+  data: { user },
+} = await supabase.auth.getUser();
+
+  const { data: profile } = await supabase
+  .from("profiles")
+  .select("first_name, last_name")
+  .eq("id", user?.id)
+  .single();
 
   const [{ count: tasks }, { count: subjects }, { count: exams }] = await Promise.all([
     supabase.from("tasks").select("*", { count: "exact", head: true }),
@@ -11,7 +19,7 @@ export default async function DashboardPage() {
     supabase.from("exams").select("*", { count: "exact", head: true })
   ]);
 
-  const firstName = user?.email?.split("@")[0] || "Francesco";
+  const firstName = profile?.first_name || "Utente";
 
   const cards = [
     ["Tasks", tasks ?? 0, CheckSquare],
