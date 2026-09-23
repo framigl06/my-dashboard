@@ -1,0 +1,3 @@
+export default function FinancePage() {
+  return <div className="max-w-6xl mx-auto"><p className="text-sm text-zinc-500">FINANZE</p><h1 className="text-3xl font-semibold">Finanze</h1><div className="grid md:grid-cols-3 gap-4 mt-6"><div className="card p-5"><div className="muted text-sm">Saldo</div><div className="text-2xl font-semibold mt-2">€ —</div></div><div className="card p-5"><div className="muted text-sm">Entrate</div><div className="text-2xl font-semibold mt-2">€ —</div></div><div className="card p-5"><div className="muted text-sm">Uscite</div><div className="text-2xl font-semibold mt-2">€ —</div></div></div></div>;
+}
